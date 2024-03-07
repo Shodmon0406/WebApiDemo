@@ -4,7 +4,7 @@ using Infrastructure.DataContext;
 
 namespace Infrastructure.Services;
 
-public class ProductService
+public class ProductService : IProductService
 {
     private readonly DapperContext _context;
 
@@ -13,34 +13,43 @@ public class ProductService
         _context = new DapperContext();
     }
 
-    public void AddProduct(Product product)
+    public async Task<string> AddProductAsync(Product product)
     {
-        var sql = "insert into products (name, price) values (@name, @price)";
-        _context.Connection().Execute(sql, product);
+        var sql = @"insert into products (name, price) values (@name, @price);";
+        var count = await _context.Connection().ExecuteAsync(sql, product);
+        return $"Added successfully: {count}";
+        // return await GetProductByIdAsync(product.Id);
     }
 
-    public List<Product> GetProducts()
+    public Task<string> AddAsync(Product product)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<List<Product>> GetProductsAsync()
     {
         var sql = "select * from products;";
-        return _context.Connection().Query<Product>(sql).ToList();
+        var result = await _context.Connection().QueryAsync<Product>(sql);
+        return result.ToList();
     }
 
-    public void UpdateProduct(Product product)
+    public async Task<Product> UpdateProductAsync(Product product)
     {
         var sql = "update products set name = @name, price = @price where id = @id";
-        _context.Connection().Execute(sql, product);
+        await _context.Connection().ExecuteAsync(sql, product);
+        return await GetProductByIdAsync(product.Id);
     }
 
-    public void DeleteProduct(int id)
+    public async Task DeleteProductAsync(int id)
     {
         var sql = "delete from products where id = @id";
-        _context.Connection().Execute(sql, new { Id = id });
+        await _context.Connection().ExecuteAsync(sql, new { Id = id });
     }
 
-    public Product GetProductById(int id)
+    public async Task<Product> GetProductByIdAsync(int id)
     {
         var sql = "select * from products where id = @id";
-        var result = _context.Connection().ExecuteReader(sql, new { Id = id });
+        var result = await _context.Connection().ExecuteReaderAsync(sql, new { Id = id });
         var product = new Product();
         if (result.Read())
         {

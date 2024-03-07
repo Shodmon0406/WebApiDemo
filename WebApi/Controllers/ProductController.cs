@@ -8,7 +8,7 @@ namespace WebApi.Controllers;
 [Route("[controller]")]
 public class ProductController : ControllerBase
 {
-    private readonly ProductService _productService;
+    private readonly IProductService _productService;
 
     public ProductController()
     { 
@@ -16,32 +16,35 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost("create-product")]
-    public void AddProduct([FromForm]Product product)
+    public async Task<string> AddProduct(Product product)
     {
-        _productService.AddProduct(product);
+        return await _productService.AddProductAsync(product);
     }
 
     [HttpGet("get-products")]
-    public List<Product> GetProduct()
+    public async Task<List<Product>> GetProduct()
     {
-        return _productService.GetProducts();
+        // Thread.Sleep(1000);
+        return await _productService.GetProductsAsync();
     }
 
     [HttpPut("update-product")]
-    public void UpdateProduct(Product product)
+    public async Task<Product> UpdateProduct(Product product)
     {
-        _productService.UpdateProduct(product);
+        var result = await _productService.UpdateProductAsync(product);
+        return result;
     }
 
     [HttpDelete("delete-product/{id}")]
-    public void DeleteProduct(int id)
+    public async Task DeleteProductAsync(int id)
     {
-        _productService.DeleteProduct(id);
+       await _productService.DeleteProductAsync(id);
     }
 
     [HttpGet("get-product-by-id/{id}")]
-    public Product GetProductById([FromQuery]int id)
+    public async Task<Product> GetProductById([FromQuery]int id)
     {
-        return _productService.GetProductById(id);
+        Thread.Sleep(millisecondsTimeout: 10000);
+        return await _productService.GetProductByIdAsync(id);
     }
 }

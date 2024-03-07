@@ -13,3 +13,4 @@ C:\Users\Shodmon\Desktop\.net_11\week2\API\Infrastructure\obj\Debug\net8.0\Infra
 C:\Users\Shodmon\Desktop\.net_11\week2\API\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
 C:\Users\Shodmon\Desktop\.net_11\week2\API\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 C:\Users\Shodmon\Desktop\.net_11\week2\API\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+C:\Users\Shodmon\Desktop\.net_11\week2\API\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json

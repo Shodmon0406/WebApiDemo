@@ -37,3 +37,4 @@ C:\Users\Shodmon\Desktop\.net_11\week2\API\WebApi\obj\Debug\net8.0\WebApi.genrun
 C:\Users\Shodmon\Desktop\.net_11\week2\API\WebApi\obj\Debug\net8.0\ref\WebApi.dll
 C:\Users\Shodmon\Desktop\.net_11\week2\API\WebApi\bin\Debug\net8.0\Dapper.dll
 C:\Users\Shodmon\Desktop\.net_11\week2\API\WebApi\bin\Debug\net8.0\Npgsql.dll
+C:\Users\Shodmon\Desktop\.net_11\week2\API\WebApi\obj\Debug\net8.0\WebApi.sourcelink.json
